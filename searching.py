@@ -1,6 +1,7 @@
 import os
 import json
-
+import time
+import matplotlib.pyplot as plt
 # get current working directory path
 cwd_path = os.getcwd()
 
@@ -60,6 +61,21 @@ def main():
     vysledek = linear_search(sequential_data, 14)
     sequential_data2 = read_data("sequential.json", "ordered_numbers")
     vysledek2 = binary_search(sequential_data2, 13)
+    delky = [100, 500, 1000, 5000, 10000]
+    casy_linear = []
+    for n in delky:
+        data = list(range(n))
+        hledane = -1
+        zacatek = time.perf_counter()
+        linear_search(data, hledane)
+        konec = time.perf_counter()
+        casy_linear.append(konec - zacatek)
+    plt.plot(delky, casy_linear, label = "Linear search")
+    plt.xlabel ("Velikosti vstupu")
+    plt.ylabel("čas")
+    plt.title("srovnani")
+    plt.legend()
+    plt.show()
     pass
     print(sequential_data2)
     print(vysledek)
