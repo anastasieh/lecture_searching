@@ -20,12 +20,23 @@ def read_data(file_name, field):
         else:
             return data[field]
 
+def linear_search(field, hledane_cislo):
+    positions = []
+    count = 0
+    for i in range(len(field)):
+        if field[i] == hledane_cislo:
+            positions.append(i)
+            count += 1
+    slovnik = {"positions":  positions, "count": count}
+    return  slovnik
+
 
 
 def main():
     sequential_data = read_data("sequential.json", "ordered_numbers")
+    vysledek = linear_search(sequential_data, 14)
     pass
     print(sequential_data)
-
+    print(vysledek)
 if __name__ == '__main__':
     main()
